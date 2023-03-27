@@ -1,0 +1,60 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Pagamento
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-toolbar>
+    <ion-title>Entrega</ion-title>
+  </ion-toolbar>
+
+  <ion-item>
+    <ion-label>Peso</ion-label>
+    <ion-select interface="popover" class="custom-options" (ionChange)="verificaSelecionado($event)" [(ngModel)]="pesoSelecionado">
+      <ion-select-option value="escolha1">0~20 kg</ion-select-option>
+      <ion-select-option value="escolha2">20~40 kg</ion-select-option>
+      <ion-select-option value="escolha3">40~60 kg</ion-select-option>
+      <ion-select-option value="escolha4">60~80 kg</ion-select-option>
+      <ion-select-option value="escolha5">80~100 kg</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>distância à percorrer</ion-label>
+    <ion-select interface="popover" class="custom-options" (ionChange)="verificaSelecionado($event)" [(ngModel)]="disSelecionado">
+      <ion-select-option value="opção1">0~20 km</ion-select-option>
+      <ion-select-option value="opção2">20~40 km</ion-select-option>
+      <ion-select-option value="opção3">40~60 km</ion-select-option>
+      <ion-select-option value="opção4">60~80 km</ion-select-option>
+      <ion-select-option value="opção5">80~100 km</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Tipo de entrega</ion-label>
+    <ion-select interface="popover" class="custom-options" (ionChange)="verificaSelecionado($event)" [(ngModel)]="entSelecionado">
+      <ion-select-option value="regular">Regular</ion-select-option>
+      <ion-select-option value="expresso">Expresso</ion-select-option>
+      <ion-select-option value="agendado">Agendado</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Peso ou distância</ion-label>
+    <ion-select interface="popover" class="custom-options" [multiple]="true" (ionChange)="verificaSelecionado($event)" [(ngModel)]="choiceSelecionado">
+      <ion-select-option value="menos40kg">menos de 40kg</ion-select-option>
+      <ion-select-option value="menos40km">menos de 40km</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-button expand="block" (click)="formula()" shape="round">calcular</ion-button>
+
+    <ion-input class="le" value='{{peso()}} + {{distancia()}} + {{entrega()}}, desconto {{b()}}' [readonly]="true"></ion-input>
+
+  <ion-input [readonly]="true" class="gal" value={{conta}}></ion-input>
+
+    <ion-button (click)="alert1()" class="be" color="dark" clear="fill">Pagar</ion-button>
+</ion-content>
